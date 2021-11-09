@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- 입력값이 없을 경우 alert -->
+    <script>
+        function required() {
+            var empt = document.forms["search"]["influencer_id"].value;
+            if (empt == "") {
+                alert("Please input influencer ID");
+                return false;
+            }
+        }
+    </script>
+
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <h1>
+        <a href="/">Social Scouter</a>
+    </h1>
+
+    <!-- 인플루언서 검색창 -->
+    <div class="search">
+        <form name="search" action="/dashboard" method="get" onsubmit="return required()">
+            <input type="text" name="influencer_id" placeholder="Influencer ID">
+            <input type="submit" value="search">
+        </form>
+        <br>
+    </div>
+
+    <!-- 인플루언서 요약정보 -->
+    <div class="influencer summary">
+        <b>Influencer Summary</b>
+        <ul>
+            <li>
+                Insta ID : <%= data.influencer_id %>
+            </li>
+            <li>
+                Follwer : <%= data.follower %>
+            </li>
+            <li>
+                Quality Score : <%= qualityScore %>
+            </li>
+        </ul>
+        <br>
+    </div>
+
+    <!-- 인플루언서 상세정보 -->
+    <div class="influencer info">        
+        <b>Information</b>
+        <ul>
+            <li>
+                Insta ID : <%= data.influencer_id %>
+            </li>
+            <li>
+                Insta Profile : <a href=<%= data.url %>><%= data.url %></a>
+            </li>
+            <li>
+                Post : <%= data.post %>
+            </li>
+            <li>
+                Follwer : <%= data.follower %>
+            </li>
+            <li>
+                Average like : <%= data.like / data.post %>
+            </li>
+            <li>
+                Average comment : <%= data.comment / data.post %>
+            </li>
+            <li>
+                React rate : <%= data.react_rate %>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

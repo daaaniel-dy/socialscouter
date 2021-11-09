@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 자바스크립트 / CSS -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='stylesheets/main.css' rel='stylesheet' />
+
+    <!-- 입력값이 없을 경우 alert -->
+    <script>
+        function required() {
+            var empt = document.forms["search"]["influencer_id"].value;
+            if (empt == "") {
+                alert("Please input influencer ID");
+                return false;
+            }
+        }
+    </script>
+    <title><%= title %></title>
+</head>
+
+<body>
+    <div class="logo-holder logo">
+        <a href="/">
+          <h3>Social <span>Scouter</span></h3>
+        </a>
+    </div>
+
+    <!-- 인플루언서 검색창 -->
+    <form name="search" action="/dashboard" method="get" onsubmit="return required()">
+      <div class="searchbox">
+          <button class="btn-menu">
+            <img src="images/top-menu.png" />
+          </button>
+          <input id="search" type="text" name="influencer_id" placeholder="Influencer ID" class="search" autocomplete='off' />
+          <button class="btn-search">
+            <img src="images/search.png" />
+          </button>
+      </div>
+    </form>
+
+    <!-- react_rate TOP10 인플루언서 -->
+    <div id="Modal" class="search-modal">
+        <div class="search-modal-header">
+          <h3>인플루언서 TOP10 랭킹 리스트</h3>
+          <span id="close"><img src="images/cancel.png" /></span>
+        </div>
+        <div class="search-modal-body">
+          <!-- 첫번째 -->
+          <div class="message">
+            <div class="message-avatar">
+              <img src="images/1.png" alt="" />
+            </div>
+            <div class="message-body">
+              <p><%= rank1.influencer_id %></p>
+              <small>Rank #1</small>
+            </div>
+            <div class="message-body">
+              <div class="link">
+                <a class="insta" target="_blank" href=<%=rank1.url %>>
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
+                </a>
+                <a class="detail" target="_blank" href="/dashboard?influencer_id=<%= rank1.influencer_id %>">상세페이지</a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- 두번째 -->
+          <div class="message">
+            <div class="message-avatar">
+              <img src="images/2.png" alt="" />
+            </div>
+            <div class="message-body">
+              <p><%= rank2.influencer_id %></p>
+              <small>Rank #2</small>
+            </div>
+            <div class="message-body">
+              <div class="link">
+                <a class="insta" target="_blank" href=<%=rank2.url %>>
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
+                </a>
+                <a class="detail" target="_blank" href="/dashboard?influencer_id=<%= rank2.influencer_id %>">상세페이지</a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- 세번째 -->
+          <div class="message">
+            <div class="message-avatar">
+              <img src="images/3.png" alt="" />
+            </div>
+            <div class="message-body">
+              <p><%= rank3.influencer_id %></p>
+              <small>Rank #3</small>
+            </div>
+            <div class="message-body">
+              <div class="link">
+                <a class="insta" target="_blank" href=<%=rank3.url %>>
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
+                </a>
+                <a class="detail" target="_blank" href="/dashboard?influencer_id=<%= rank3.influencer_id %>">상세페이지</a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- 네번째 -->
+          <div class="message">
+            <div class="message-avatar">
+              <img src="images/4.png" alt="" />
+            </div>
+            <div class="message-body">
+              <p><%= rank4.influencer_id %></p>
+              <small>Rank #4</small>
+            </div>
+            <div class="message-body">
+              <div class="link">
+                <a class="insta" target="_blank" href=<%=rank4.url %>>
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
+                </a>
+                <a class="detail" target="_blank" href="/dashboard?influencer_id=<%= rank4.influencer_id %>">상세페이지</a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- 다섯번째 -->
+          <div class="message">
+            <div class="message-avatar">
+              <img src="images/5.png" alt="" />
+            </div>
+            <div class="message-body">
+              <p><%= rank5.influencer_id %></p>
+              <small>Rank #5</small>
+            </div>
+            <div class="message-body">
+              <div class="link">
+                <a class="insta" target="_blank" href=<%=rank5.url %>>
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
+                </a>
+                <a class="detail" target="_blank" href="/dashboard?influencer_id=<%= rank5.influencer_id %>">상세페이지</a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- 여섯번째 -->
+          <div class="message">
+            <div class="message-avatar">
+              <img src="images/6.png" alt="" />
+            </div>
+            <div class="message-body">
+              <p><%= rank6.influencer_id %></p>
+              <small>Rank #6</small>
+            </div>
+            <div class="message-body">
+              <div class="link">
+                <a class="insta" target="_blank" href=<%=rank6.url %>>
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
+                </a>
+                <a class="detail" target="_blank" href="/dashboard?influencer_id=<%= rank6.influencer_id %>">상세페이지</a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- 일곱번째 -->
+          <div class="message">
+            <div class="message-avatar">
+              <img src="images/7.png" alt="" />
+            </div>
+            <div class="message-body">
+              <p><%= rank7.influencer_id %></p>
+              <small>Rank #7</small>
+            </div>
+            <div class="message-body">
+              <div class="link">
+                <a class="insta" target="_blank" href=<%=rank7.url %>>
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
+                </a>
+                <a class="detail" target="_blank" href="/dashboard?influencer_id=<%= rank7.influencer_id %>">상세페이지</a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- 여덟번째 -->
+          <div class="message">
+            <div class="message-avatar">
+              <img src="images/8.png" alt="" />
+            </div>
+            <div class="message-body">
+              <p><%= rank8.influencer_id %></p>
+              <small>Rank #8</small>
+            </div>
+            <div class="message-body">
+              <div class="link">
+                <a class="insta" target="_blank" href=<%=rank8.url %>>
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
+                </a>
+                <a class="detail" target="_blank" href="/dashboard?influencer_id=<%= rank8.influencer_id %>">상세페이지</a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- 아홉번째 -->
+          <div class="message">
+            <div class="message-avatar">
+              <img src="images/9.png" alt="" />
+            </div>
+            <div class="message-body">
+              <p><%= rank9.influencer_id %></p>
+              <small>Rank #9</small>
+            </div>
+            <div class="message-body">
+              <div class="link">
+                <a class="insta" target="_blank" href=<%=rank9.url %>>
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
+                </a>
+                <a class="detail" target="_blank" href="/dashboard?influencer_id=<%= rank9.influencer_id %>">상세페이지</a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- 열번째 -->
+          <div class="message">
+            <div class="message-avatar">
+              <img src="images/10.png" alt="" />
+            </div>
+            <div class="message-body">
+              <p><%= rank10.influencer_id %></p>
+              <small>Rank #10</small>
+            </div>
+            <div class="message-body">
+              <div class="link">
+                <a class="insta" target="_blank" href=<%=rank10.url %>>
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
+                </a>
+                <a class="detail" target="_blank" href="/dashboard?influencer_id=<%= rank10.influencer_id %>">상세페이지</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="javascripts/main.js"></script>
+</body>
+
+</html>

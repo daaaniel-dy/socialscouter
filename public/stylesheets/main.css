@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css?family=Lexend+Deca|Dosis&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bangers|Cinzel:400,700,900|Lato:100,300,400,700,900|Lobster|Lora:400,700|Mansalva|Muli:200,300,400,600,700,800,900|Open+Sans:300,400,600,700,800|Oswald:200,300,400,500,600,700|Roboto:100,300,400,500,700,900&display=swap');
+
+/* 로고 & 타이틀 */
+.logo h3 {
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-weight: 300;
+  font-size: 30px;
+  line-height:1.3;
+}
+.logo h3 span {
+  background: #224c64;
+  color: #fff;
+  display: inline-block;
+  line-height: 1.8;
+  padding: 0 16px;
+}
+.logo a {
+  text-decoration: none;
+}
+.logo-holder{
+  text-align:center;
+}
+
+/* 메인 페이지 */
+body {
+  margin: 0;
+  padding: 16px;
+  flex: 1;
+  background: #2f94d8;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lexend Deca', sans-serif;
+  overflow-y: none !important;
+}
+button img {
+  transition: transform 0.25s;
+}
+button:hover > img {
+  transform: scale(1.2);
+}
+button:focus {
+  outline: none;
+}
+input {
+  font-family: 'Lexend Deca', sans-serif;
+}
+input::placeholder {
+  font-family: 'Lexend Deca', sans-serif;
+}
+input:focus {
+  outline: none;
+}
+.searchbox {
+  height: 60px;
+  width: 450px;
+  max-width: 100%;
+  background: white;
+  border-radius: 10px;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 0px;
+  display: flex;
+}
+.searchbox > .btn-menu {
+  padding: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.searchbox > .search {
+  border: none;
+  width: 100%;
+}
+.searchbox > .btn-search {
+  padding: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.search-modal {
+  height: 400px;
+  width: 450px;
+  max-width: 100%;
+  background: white;
+  border-radius: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 220px;
+  animation: slideInUp 0.5s;
+  display: none;
+}
+.search-modal-header {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #000 17;
+}
+.search-modal-header h3 {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+  float: left;
+}
+.search-modal-header span img {
+  float: right;
+  position: absolute;
+  right: 16px;
+  top: 25px;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+.search-modal-header span img:hover {
+  transform: scale(1.1);
+}
+.search-modal-body {
+  padding: 20px;
+  height: 285px;
+  overflow-y: scroll;
+}
+.search-modal-body .message {
+	display: grid;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 10px;
+    grid-template-columns: 1fr 2fr 4fr 0fr;
+}
+.search-modal-body .message-avatar {
+  margin-right: 16px;
+  margin-top: 10px;
+}
+.search-modal-body .message-avatar img {
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.45);
+}
+.search-modal-body .message-body {
+  margin-left: 0;
+  margin-top: 8px;
+}
+.search-modal-body .message-body p {
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+}
+.search-modal-body .message-body small {
+  font-weight: 400;
+  font-family: Dosis;
+  color: #777;
+}
+.search-modal-body .message-body .link {
+	text-align: right;
+	line-height: 68px;
+}
+.search-modal-body .message-body .link a.detail {
+	padding: 9px 12px;
+	border: 1px solid #DFE2E4;
+	color: #A3A8CD;
+	text-decoration: none;
+	font-size: 14px;
+}
+.search-modal-body .message-body .link a.insta {
+	text-decoration: none;
+	font-size: 14px;
+}
+.search-modal-body .message-body .link img {
+	width: 40px;
+}
+.search-modal-body .message:hover {
+  background-color: #2f94d8 17;
+}
+.search-modal-body::-webkit-scrollbar {
+  width: 5px;
+}
+.search-modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.search-modal-body::-webkit-scrollbar-thumb {
+  background: #2f94d8;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: -1px 0 5px rgba(0, 0, 0, 0.15);
+}
+.search-modal-body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+@keyframes slideInUp {
+  from {
+    -webkit-transform: translate3d(0, 15%, 0);
+    transform: translate3d(0, 15%, 0);
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
