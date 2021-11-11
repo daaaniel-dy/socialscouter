@@ -7,7 +7,7 @@ const maria = require('../database/maria')
 /* GET home page. */
 router.get('/', function (req, res, next) {
   // react_rate 내림차순으로 정렬 query
-  var sql = `SELECT influencer_id, url FROM influencer_data ORDER BY react_rate DESC`;
+  var sql = `SELECT influencer_id, url, image_src FROM influencer_data ORDER BY react_rate DESC`;
 
   maria.query(sql, function (err, results, fields) { // DB에 query 전송
     console.log("influencer id / url : " + util.inspect(results));
@@ -47,13 +47,13 @@ router.get('/dashboard', function (req, res, next) {
       console.log(typeof (util.inspect(influencerData[0])));
 
       // 없는 ID를 검색했을 때(미완)
-      if (typeof (influencerData[0]) === undefined) {
-        
+      if (typeof (influencerData[0]) === 'undefined') {
+        res.redirect('/')
       }
 
       var cnt_sql = `SELECT COUNT(*) AS cnt FROM influencer_data;`; // 전체 인플루언서 수 query
       var rank_sql =
-        `SELECT rank 
+        `SELECT rank
         FROM(SELECT *, RANK() OVER (ORDER BY react_rate ASC) AS rank FROM influencer_data) AS t 
         WHERE t.influencer_id = ?;`; // react_rate의 내림차순 rank query
 
@@ -70,7 +70,7 @@ router.get('/dashboard', function (req, res, next) {
         res.render('dashboard', {
           title: 'Dashboard - ' + id, // Dashboard - (influencer id)
           data: influencerData[0], // influencer data
-          qualityScore: qualityScore // quality score
+          qualityScore: qualityScore.toFixed(2) // quality score
         });
       });
     }

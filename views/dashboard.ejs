@@ -3,6 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='stylesheets/dashboard.css' rel='stylesheet' />
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="javascripts/chart.js"></script>
 
     <!-- 입력값이 없을 경우 alert -->
     <script>
@@ -20,12 +25,11 @@
     </title>
 </head>
 
-<body>
+<!-- <body>
     <h1>
         <a href="/">Social Scouter</a>
     </h1>
 
-    <!-- 인플루언서 검색창 -->
     <div class="search">
         <form name="search" action="/dashboard" method="get" onsubmit="return required()">
             <input type="text" name="influencer_id" placeholder="Influencer ID">
@@ -34,7 +38,6 @@
         <br>
     </div>
 
-    <!-- 인플루언서 요약정보 -->
     <div class="influencer summary">
         <b>Influencer Summary</b>
         <ul>
@@ -51,7 +54,6 @@
         <br>
     </div>
 
-    <!-- 인플루언서 상세정보 -->
     <div class="influencer info">        
         <b>Information</b>
         <ul>
@@ -68,16 +70,137 @@
                 Follwer : <%= data.follower %>
             </li>
             <li>
-                Average like : <%= data.like / data.post %>
+                Average like : <%= (data.like / data.post).toFixed(2) %>
             </li>
             <li>
-                Average comment : <%= data.comment / data.post %>
+                Average comment : <%= (data.comment / data.post).toFixed(2) %>
             </li>
             <li>
-                React rate : <%= data.react_rate %>
+                React rate : <%= data.react_rate.toFixed(2) %>
             </li>
         </ul>
     </div>
+</body> -->
+
+<body>
+    <div class="main-content">
+      <!-- Top navbar -->
+      <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+        <div class="container-fluid">
+          <!-- Brand -->
+          <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/">홈</a>
+          <!-- Form -->
+          <form name="search" action="/dashboard" method="get" onsubmit="return required()" class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+            <div class="form-group mb-0">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+                <input class="form-control" type="text" name="influencer_id" placeholder="Influencer ID" autocomplete='off'>
+              </div>
+            </div>
+          </form>
+        </div>
+      </nav>
+      <!-- Header -->
+      <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="height: 400px; background-image: url(https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid d-flex align-items-center">
+          <div class="row" style="width: 100%; justify-content: center;">
+            <div class="col-lg-7 col-md-10">
+              <h1 class="display-2 text-white"><%= data.influencer_id %></h1>
+              <p class="text-white mt-0 mb-5">프로필 설명/상태메세지</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Page content -->
+      <div class="container-fluid mt--7">
+        <div class="row" style="justify-content: center;">
+
+          <!-- 프로필 -->
+          <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+            <div class="card card-profile shadow" style="height: 580px;">
+              <div class="row justify-content-center">
+                <div class="col-lg-3 order-lg-2">
+                  <div class="card-profile-image">
+                    <a href="<%= data.url %>" target="_blank">
+                      <img src="images/10.png" class="rounded-circle">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                <div class="d-flex justify-content-between">
+                </div>
+              </div>
+              <div class="card-body pt-0 pt-md-4">
+                <div class="row">
+                  <div class="col">
+                    <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                      <div>
+                        <span class="heading"><%= data.follower %>명</span>
+                        <span class="description">팔로워</span>
+                      </div>
+                      <div>
+                        <span class="heading"><%= qualityScore %>점</span>
+                        <span class="description">종합점수</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <h3>
+                    <%= data.influencer_id %>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 상세 -->
+          <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+            <div class="card card-profile shadow" style="height: 580px;">
+              <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                <div class="d-flex justify-content-between">
+                  상세정보
+                </div>
+              </div>
+              <div class="card-body pt-0 pt-md-4">
+                <div class="row">
+                  <div class="col">
+                    <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                      <div>
+                        <span class="heading"><%= data.post %></span>
+                        <span class="description">포스트</span>
+                      </div>
+                      <div>
+                        <span class="heading"><%= (data.like / data.post).toFixed(2) %></span>
+                        <span class="description">평균 좋아요 수</span>
+                      </div>
+                      <div>
+                        <span class="heading"><%= (data.comment / data.post).toFixed(2) %></span>
+                        <span class="description">평균 댓글 수</span>
+                      </div>
+                      <div>
+                        <span class="heading"><%= data.react_rate.toFixed(2) %></span>
+                        <span class="description">반응률</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
+  
 
 </html>
