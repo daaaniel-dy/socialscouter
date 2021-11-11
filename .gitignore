@@ -1,5 +1,1 @@
-*.csv
-
-maria.js
-
-package.json
+database/
