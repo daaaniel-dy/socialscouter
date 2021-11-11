@@ -47,8 +47,8 @@ router.get('/dashboard', function (req, res, next) {
       console.log(typeof (util.inspect(influencerData[0])));
 
       // 없는 ID를 검색했을 때(미완)
-      if (typeof (influencerData[0]) === 'undefined') {
-        res.redirect('/')
+      if (typeof (influencerData[0]) === 'undefined') {        
+        res.redirect("/nodata")
       }
 
       var cnt_sql = `SELECT COUNT(*) AS cnt FROM influencer_data;`; // 전체 인플루언서 수 query
@@ -79,6 +79,15 @@ router.get('/dashboard', function (req, res, next) {
       res.send(err);
     }
   });
+});
+
+router.get('/nodata', function(req, res, next){
+  res.send(
+    `<script>
+      alert("Sorry, we can't find ID. Please check again.");
+      location.href='/';
+    </script>`
+  )
 });
 
 module.exports = router;
