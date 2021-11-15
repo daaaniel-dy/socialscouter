@@ -46,7 +46,7 @@ router.get('/dashboard', function (req, res, next) {
       console.log("data : " + util.inspect(influencerData[0]));
       console.log(typeof (util.inspect(influencerData[0])));
 
-      // 없는 ID를 검색했을 때(미완)
+      // 없는 ID를 검색했을 때
       if (typeof (influencerData[0]) === 'undefined') {        
         res.redirect("/nodata")
       }
@@ -56,16 +56,19 @@ router.get('/dashboard', function (req, res, next) {
         `SELECT rank
         FROM(SELECT *, RANK() OVER (ORDER BY react_rate ASC) AS rank FROM influencer_data) AS t 
         WHERE t.influencer_id = ?;`; // react_rate의 내림차순 rank query
+      var avg_sql = `SELECT avg(follower), avg(react_rate) FROM influencer_data;`; // average data query
 
-      maria.query(cnt_sql + rank_sql, [id], function (err, results, fields) { // DB에 쿼리 전송
+      maria.query(cnt_sql + rank_sql + avg_sql, [id], function (err, results, fields) { // DB에 쿼리 전송
         var influencerCnt = results[0]; // 전체 인플루언서 수
         var influencerRank = results[1]; // react_rate의 내림차순 rank
+        var dataAvg = results[2];
         console.log("total influencer count : " + influencerCnt[0].cnt);
         console.log("influencer rank(Backward) : " + influencerRank[0].rank);
+        console.log("average data : " + util.inspect(dataAvg))
 
         // 내림차순 rank를 구해서 하위로부터 몇 퍼센트인지 구한 뒤 quality score(가명)라는 점수로 표현
         var qualityScore = (Number(influencerRank[0].rank) / Number(influencerCnt[0].cnt)) * 100;
-        console.log("quality Score : " + qualityScore);
+        console.log("quality Score : " + qualityScore.toFixed(2));
 
         res.render('dashboard', {
           title: 'Dashboard - ' + id, // Dashboard - (influencer id)
@@ -81,11 +84,12 @@ router.get('/dashboard', function (req, res, next) {
   });
 });
 
+// 잘못된 ID 입력으로 인해 return된 데이터가 없을 경우
 router.get('/nodata', function(req, res, next){
   res.send(
     `<script>
       alert("Sorry, we can't find ID. Please check again.");
-      location.href='/';
+      window.location = document.referrer; // 직전페이지로 이동
     </script>`
   )
 });

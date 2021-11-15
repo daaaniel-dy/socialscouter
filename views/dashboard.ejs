@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href='stylesheets/dashboard.css' rel='stylesheet' />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"> 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="javascripts/chart.js"></script>
 
@@ -103,7 +104,7 @@
         </div>
       </nav>
       <!-- Header -->
-      <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="height: 400px; background-image: url(https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+      <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="height: 400px; background-image: url(https://coolbackgrounds.io/images/backgrounds/index/disco-dba865f1.png); background-size: cover; background-position: center top;">
         <!-- Mask -->
         <span class="mask bg-gradient-default opacity-8"></span>
         <!-- Header container -->
@@ -133,6 +134,11 @@
                 </div>
               </div>
               <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                <div style="float:right">
+                  <a href="<%= data.url %>" target="_blank">
+                    <span class="heading"><img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" width="50" height="50"/></span>
+                  </a>                        
+                </div>
                 <div class="d-flex justify-content-between">
                 </div>
               </div>
@@ -140,22 +146,47 @@
                 <div class="row">
                   <div class="col">
                     <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                      <div>
+                      <div class="stat-card">
+                        <div class="stat-card__content">
+                          <p class="text-uppercase mb-1 text-muted">팔로워</p>
+                          <h2><%= data.follower %>명</h2>
+                          <div>
+                            <span class="text-success font-weight-bold mr-1"></span> 
+                            <span class="text-muted"></span>
+                          </div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--success">
+                          <div class="stat-card__icon-circle">
+                            <i class="fas fa-users"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="stat-card">
+                        <div class="stat-card__content">
+                          <p class="text-uppercase mb-1 text-muted">종합점수</p>
+                          <h2><%= qualityScore %>점</h2>
+                          <div>
+                            <span class="text-success font-weight-bold mr-1"></span> 
+                            <span class="text-muted"></span>
+                          </div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--success">
+                          <div class="stat-card__icon-circle">
+                            <i class="fas fa-star"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div>
                         <span class="heading"><%= data.follower %>명</span>
                         <span class="description">팔로워</span>
                       </div>
                       <div>
                         <span class="heading"><%= qualityScore %>점</span>
                         <span class="description">종합점수</span>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
-                </div>
-                <div class="text-center">
-                  <h3>
-                    <%= data.influencer_id %>
-                  </h3>
-                </div>
+                </div>                
               </div>
             </div>
           </div>
@@ -171,8 +202,70 @@
               <div class="card-body pt-0 pt-md-4">
                 <div class="row">
                   <div class="col">
-                    <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                      <div>
+                    <div class="card-profile-stats d-flex justify-content-center mt-md-5" style="margin-top: -3rem !important;">
+                      <div class="stat-card">
+                        <div class="stat-card__content">
+                          <p class="text-uppercase mb-1 text-muted">포스트</p>
+                          <h2><%= data.post %>개</h2>
+                          <div>
+                            <span class="text-success font-weight-bold mr-1"></span> 
+                            <span class="text-muted"></span>
+                          </div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--success">
+                          <div class="stat-card__icon-circle">
+                            <i class="fas fa-portrait"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="stat-card">
+                        <div class="stat-card__content">
+                          <p class="text-uppercase mb-1 text-muted">평균 좋아요</p>
+                          <h2><%= (data.like / data.post).toFixed(2) %>개</h2>
+                          <div>
+                            <span class="text-success font-weight-bold mr-1"></span> 
+                            <span class="text-muted"></span>
+                          </div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--success">
+                          <div class="stat-card__icon-circle">
+                            <i class="fas fa-thumbs-up"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-profile-stats d-flex justify-content-center mt-md-5" style="margin-top: -3rem !important;">
+                      <div class="stat-card">
+                        <div class="stat-card__content">
+                          <p class="text-uppercase mb-1 text-muted">평균 댓글</p>
+                          <h2><%= (data.comment / data.post).toFixed(2) %>개</h2>
+                          <div>
+                            <span class="text-success font-weight-bold mr-1"></span> 
+                            <span class="text-muted"></span>
+                          </div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--success">
+                          <div class="stat-card__icon-circle">
+                            <i class="fas fa-comments"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="stat-card">
+                        <div class="stat-card__content">
+                          <p class="text-uppercase mb-1 text-muted">반응률</p>
+                          <h2><%= data.react_rate.toFixed(2) %></h2>
+                          <div>
+                            <span class="text-success font-weight-bold mr-1"></span> 
+                            <span class="text-muted"></span>
+                          </div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--success">
+                          <div class="stat-card__icon-circle">
+                            <i class="fas fa-child"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div>
                         <span class="heading"><%= data.post %></span>
                         <span class="description">포스트</span>
                       </div>
@@ -187,7 +280,7 @@
                       <div>
                         <span class="heading"><%= data.react_rate.toFixed(2) %></span>
                         <span class="description">반응률</span>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>

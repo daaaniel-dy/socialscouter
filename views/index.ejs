@@ -51,10 +51,10 @@
           <!-- 첫번째 -->
           <div class="message">
             <div class="message-avatar">
-              <img src="images/10.png" alt="" />
+              <img src="<%= rank1.image_src %>" alt="" />
             </div>
             <div class="message-body">
-              <p><%= rank1.influencer_id %></p>
+              <p><a class="detail" href="/dashboard?influencer_id=<%= rank1.influencer_id %>"><%= rank1.influencer_id %></a></p>
               <small>Rank #1</small>
             </div>
             <div class="message-body">
@@ -62,7 +62,6 @@
                 <a class="insta" target="_blank" href=<%=rank1.url %>>
                   <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
                 </a>
-                <a class="detail" href="/dashboard?influencer_id=<%= rank1.influencer_id %>">상세페이지</a>
               </div>
             </div>
           </div>
@@ -73,15 +72,14 @@
               <img src="images/10.png" alt="" />
             </div>
             <div class="message-body">
-              <p><%= rank2.influencer_id %></p>
+              <p><a class="detail" href="/dashboard?influencer_id=<%= rank2.influencer_id %>"><%= rank2.influencer_id %></a></p>
               <small>Rank #2</small>
             </div>
             <div class="message-body">
               <div class="link">
                 <a class="insta" target="_blank" href=<%=rank2.url %>>
                     <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
-                </a>
-                <a class="detail" href="/dashboard?influencer_id=<%= rank2.influencer_id %>">상세페이지</a>
+                </a>                
               </div>
             </div>
           </div>
@@ -92,15 +90,14 @@
               <img src="images/10.png" alt="" />
             </div>
             <div class="message-body">
-              <p><%= rank3.influencer_id %></p>
+              <p><a class="detail" href="/dashboard?influencer_id=<%= rank3.influencer_id %>"><%= rank3.influencer_id %></a></p>
               <small>Rank #3</small>
             </div>
             <div class="message-body">
               <div class="link">
                 <a class="insta" target="_blank" href=<%=rank3.url %>>
                     <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
-                </a>
-                <a class="detail" href="/dashboard?influencer_id=<%= rank3.influencer_id %>">상세페이지</a>
+                </a>                
               </div>
             </div>
           </div>
@@ -111,15 +108,14 @@
               <img src="images/10.png" alt="" />
             </div>
             <div class="message-body">
-              <p><%= rank4.influencer_id %></p>
+              <p><a class="detail" href="/dashboard?influencer_id=<%= rank4.influencer_id %>"><%= rank4.influencer_id %></a></p>
               <small>Rank #4</small>
             </div>
             <div class="message-body">
               <div class="link">
                 <a class="insta" target="_blank" href=<%=rank4.url %>>
                     <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
-                </a>
-                <a class="detail" href="/dashboard?influencer_id=<%= rank4.influencer_id %>">상세페이지</a>
+                </a>                
               </div>
             </div>
           </div>
@@ -130,15 +126,14 @@
               <img src="images/10.png" alt="" />
             </div>
             <div class="message-body">
-              <p><%= rank5.influencer_id %></p>
+              <p><a class="detail" href="/dashboard?influencer_id=<%= rank5.influencer_id %>"><%= rank5.influencer_id %></a></p>
               <small>Rank #5</small>
             </div>
             <div class="message-body">
               <div class="link">
                 <a class="insta" target="_blank" href=<%=rank5.url %>>
                     <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
-                </a>
-                <a class="detail" href="/dashboard?influencer_id=<%= rank5.influencer_id %>">상세페이지</a>
+                </a>                
               </div>
             </div>
           </div>
@@ -149,7 +144,7 @@
               <img src="images/10.png" alt="" />
             </div>
             <div class="message-body">
-              <p><%= rank6.influencer_id %></p>
+              <p> <a class="detail" href="/dashboard?influencer_id=<%= rank6.influencer_id %>"><%= rank6.influencer_id %></a></p>
               <small>Rank #6</small>
             </div>
             <div class="message-body">
@@ -157,7 +152,6 @@
                 <a class="insta" target="_blank" href=<%=rank6.url %>>
                     <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
                 </a>
-                <a class="detail" href="/dashboard?influencer_id=<%= rank6.influencer_id %>">상세페이지</a>
               </div>
             </div>
           </div>
@@ -168,7 +162,7 @@
               <img src="images/10.png" alt="" />
             </div>
             <div class="message-body">
-              <p><%= rank7.influencer_id %></p>
+              <p><a class="detail" href="/dashboard?influencer_id=<%= rank7.influencer_id %>"><%= rank7.influencer_id %></a></p>
               <small>Rank #7</small>
             </div>
             <div class="message-body">
@@ -176,7 +170,6 @@
                 <a class="insta" target="_blank" href=<%=rank7.url %>>
                     <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
                 </a>
-                <a class="detail" href="/dashboard?influencer_id=<%= rank7.influencer_id %>">상세페이지</a>
               </div>
             </div>
           </div>
@@ -187,7 +180,7 @@
               <img src="images/10.png" alt="" />
             </div>
             <div class="message-body">
-              <p><%= rank8.influencer_id %></p>
+              <p><a class="detail" href="/dashboard?influencer_id=<%= rank8.influencer_id %>"><%= rank8.influencer_id %></a></p>
               <small>Rank #8</small>
             </div>
             <div class="message-body">
@@ -195,7 +188,6 @@
                 <a class="insta" target="_blank" href=<%=rank8.url %>>
                     <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
                 </a>
-                <a class="detail" href="/dashboard?influencer_id=<%= rank8.influencer_id %>">상세페이지</a>
               </div>
             </div>
           </div>
@@ -206,7 +198,7 @@
               <img src="images/10.png" alt="" />
             </div>
             <div class="message-body">
-              <p><%= rank9.influencer_id %></p>
+              <p><a class="detail" href="/dashboard?influencer_id=<%= rank9.influencer_id %>"><%= rank9.influencer_id %></a></p>
               <small>Rank #9</small>
             </div>
             <div class="message-body">
@@ -214,7 +206,6 @@
                 <a class="insta" target="_blank" href=<%=rank9.url %>>
                     <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
                 </a>
-                <a class="detail" href="/dashboard?influencer_id=<%= rank9.influencer_id %>">상세페이지</a>
               </div>
             </div>
           </div>
@@ -225,7 +216,7 @@
               <img src="images/10.png" alt="" />
             </div>
             <div class="message-body">
-              <p><%= rank10.influencer_id %></p>
+              <p><a class="detail" href="/dashboard?influencer_id=<%= rank10.influencer_id %>"><%= rank10.influencer_id %></a></p>
               <small>Rank #10</small>
             </div>
             <div class="message-body">
@@ -233,7 +224,6 @@
                 <a class="insta" target="_blank" href=<%=rank10.url %>>
                     <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-1946323-1646407.png" />
                 </a>
-                <a class="detail" href="/dashboard?influencer_id=<%= rank10.influencer_id %>">상세페이지</a>
               </div>
             </div>
           </div>
