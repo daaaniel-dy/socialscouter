@@ -1,34 +1,84 @@
 @import url('https://fonts.googleapis.com/css?family=Lexend+Deca|Dosis&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Bangers|Cinzel:400,700,900|Lato:100,300,400,700,900|Lobster|Lora:400,700|Mansalva|Muli:200,300,400,600,700,800,900|Open+Sans:300,400,600,700,800|Oswald:200,300,400,500,600,700|Roboto:100,300,400,500,700,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sen:wght@700&display=swap");
 
 /* 로고 & 타이틀 */
-.logo h3 {
+.content-blue {
+  font-size: 10vmin;
+  font-family: "Sen", sans-serif;
+  color: #1c203b;
+  
+}
+
+.content-white {
+  font-size: 10vmin;
+  font-family: "Sen", sans-serif;
   color: #fff;
-  font-family: 'Cinzel', serif;
-  font-weight: 300;
-  font-size: 30px;
-  line-height:1.3;
+  
 }
-.logo h3 span {
-  background: #224c64;
-  color: #fff;
-  display: inline-block;
-  line-height: 1.8;
-  padding: 0 16px;
+
+.circ-pink {
+  height: 5vmin;
+  width: 5vmin;
+  background: #df3e55;
+  border-radius: 100%;
+  margin-bottom: 7vmin;
+  animation-name: bounce-7;
+  animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
+  animation-duration: 2s;
 }
-.logo a {
-  text-decoration: none;
+
+.circ-white {
+  height: 5vmin;
+  width: 5vmin;
+  background: #fff;
+  border-radius: 100%;
+  margin-bottom: 7vmin;
+  animation-name: bounce-7;
+  animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
+  animation-duration: 2s;
 }
-.logo-holder{
-  text-align:center;
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+  background: #23235A;
 }
+
+@keyframes bounce-7 {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(1.1, 0.9) translateY(0);
+  }
+  30% {
+    transform: scale(0.9, 1.1) translateY(-100px);
+  }
+  50% {
+    transform: scale(1.05, 0.95) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(-7px);
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+
 
 /* 메인 페이지 */
 body {
   margin: 0;
   padding: 16px;
   flex: 1;
-  background: #2f94d8;
+  background: #23235A;
   justify-content: center;
   align-items: center;
   font-family: 'Lexend Deca', sans-serif;
@@ -91,9 +141,9 @@ input:focus {
   left: 0;
   right: 0;
   margin: 0 auto;
-  top: 220px;
+  top: 305px;
   animation: slideInUp 0.5s;
-  display: none;
+  display: block;
 }
 .search-modal-header {
   display: flex;

@@ -22,17 +22,17 @@
 </head>
 
 <body>
-    <div class="logo-holder logo">
-        <a href="/">
-          <h3>Social <span>Scouter</span></h3>
-        </a>
+    <div class='top'>
+      <div class='content-white'>
+        <a href="/" style="text-decoration: none; color: white">Social Scouter</a>
+      </div>
+      <div class='circ-pink'></div>
     </div>
 
     <!-- 인플루언서 검색창 -->
     <form name="search" action="/dashboard" method="get" onsubmit="return required()">
       <div class="searchbox">
-          <button class="btn-menu">
-            <img src="images/top-menu.png" />
+          <button class="btn-menu" disabled> 
           </button>
           <input id="search" type="text" name="influencer_id" placeholder="Influencer ID" class="search" autocomplete='off' />
           <button class="btn-search">
@@ -44,14 +44,13 @@
     <!-- react_rate TOP10 인플루언서 -->
     <div id="Modal" class="search-modal">
         <div class="search-modal-header">
-          <h3>인플루언서 TOP10 랭킹 리스트</h3>
-          <span id="close"><img src="images/cancel.png" /></span>
+          <h3 style="margin-left: 25px;">인플루언서 TOP10 랭킹 리스트</h3>
         </div>
         <div class="search-modal-body">
           <!-- 첫번째 -->
           <div class="message">
             <div class="message-avatar">
-              <img src="<%= rank1.image_src %>" alt="" />
+              <a class="detail" href="/dashboard?influencer_id=<%= rank1.influencer_id %>"><img src="images/<%= rank1.id %>.jpg" alt="" /></a>
             </div>
             <div class="message-body">
               <p><a class="detail" href="/dashboard?influencer_id=<%= rank1.influencer_id %>"><%= rank1.influencer_id %></a></p>
@@ -69,7 +68,7 @@
           <!-- 두번째 -->
           <div class="message">
             <div class="message-avatar">
-              <img src="images/10.png" alt="" />
+              <a class="detail" href="/dashboard?influencer_id=<%= rank2.influencer_id %>"><img src="images/<%= rank2.id %>.jpg" alt="" /></a>
             </div>
             <div class="message-body">
               <p><a class="detail" href="/dashboard?influencer_id=<%= rank2.influencer_id %>"><%= rank2.influencer_id %></a></p>
@@ -87,7 +86,7 @@
           <!-- 세번째 -->
           <div class="message">
             <div class="message-avatar">
-              <img src="images/10.png" alt="" />
+              <a class="detail" href="/dashboard?influencer_id=<%= rank3.influencer_id %>"><img src="images/<%= rank3.id %>.jpg" alt="" /></a>
             </div>
             <div class="message-body">
               <p><a class="detail" href="/dashboard?influencer_id=<%= rank3.influencer_id %>"><%= rank3.influencer_id %></a></p>
@@ -105,7 +104,7 @@
           <!-- 네번째 -->
           <div class="message">
             <div class="message-avatar">
-              <img src="images/10.png" alt="" />
+              <a class="detail" href="/dashboard?influencer_id=<%= rank4.influencer_id %>"><img src="images/<%= rank4.id %>.jpg" alt="" /></a>
             </div>
             <div class="message-body">
               <p><a class="detail" href="/dashboard?influencer_id=<%= rank4.influencer_id %>"><%= rank4.influencer_id %></a></p>
@@ -123,7 +122,7 @@
           <!-- 다섯번째 -->
           <div class="message">
             <div class="message-avatar">
-              <img src="images/10.png" alt="" />
+              <a class="detail" href="/dashboard?influencer_id=<%= rank5.influencer_id %>"><img src="images/<%= rank5.id %>.jpg" alt="" /></a>
             </div>
             <div class="message-body">
               <p><a class="detail" href="/dashboard?influencer_id=<%= rank5.influencer_id %>"><%= rank5.influencer_id %></a></p>
@@ -141,7 +140,7 @@
           <!-- 여섯번째 -->
           <div class="message">
             <div class="message-avatar">
-              <img src="images/10.png" alt="" />
+              <a class="detail" href="/dashboard?influencer_id=<%= rank6.influencer_id %>"><img src="images/<%= rank6.id %>.jpg" alt="" /></a>
             </div>
             <div class="message-body">
               <p> <a class="detail" href="/dashboard?influencer_id=<%= rank6.influencer_id %>"><%= rank6.influencer_id %></a></p>
@@ -159,7 +158,7 @@
           <!-- 일곱번째 -->
           <div class="message">
             <div class="message-avatar">
-              <img src="images/10.png" alt="" />
+              <a class="detail" href="/dashboard?influencer_id=<%= rank7.influencer_id %>"><img src="images/<%= rank7.id %>.jpg" alt="" /></a>
             </div>
             <div class="message-body">
               <p><a class="detail" href="/dashboard?influencer_id=<%= rank7.influencer_id %>"><%= rank7.influencer_id %></a></p>
@@ -177,7 +176,7 @@
           <!-- 여덟번째 -->
           <div class="message">
             <div class="message-avatar">
-              <img src="images/10.png" alt="" />
+              <a class="detail" href="/dashboard?influencer_id=<%= rank8.influencer_id %>"><img src="images/<%= rank8.id %>.jpg" alt="" /></a>
             </div>
             <div class="message-body">
               <p><a class="detail" href="/dashboard?influencer_id=<%= rank8.influencer_id %>"><%= rank8.influencer_id %></a></p>
@@ -195,7 +194,7 @@
           <!-- 아홉번째 -->
           <div class="message">
             <div class="message-avatar">
-              <img src="images/10.png" alt="" />
+              <a class="detail" href="/dashboard?influencer_id=<%= rank9.influencer_id %>"><img src="images/<%= rank9.id %>.jpg" alt="" /></a>
             </div>
             <div class="message-body">
               <p><a class="detail" href="/dashboard?influencer_id=<%= rank9.influencer_id %>"><%= rank9.influencer_id %></a></p>
@@ -213,7 +212,7 @@
           <!-- 열번째 -->
           <div class="message">
             <div class="message-avatar">
-              <img src="images/10.png" alt="" />
+              <a class="detail" href="/dashboard?influencer_id=<%= rank10.influencer_id %>"><img src="images/<%= rank10.id %>.jpg" alt="" /></a>
             </div>
             <div class="message-body">
               <p><a class="detail" href="/dashboard?influencer_id=<%= rank10.influencer_id %>"><%= rank10.influencer_id %></a></p>

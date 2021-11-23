@@ -1,7 +1,7 @@
-$('#search').focusin(function () {
-  $('#Modal').show();
-});
+// $('#search').focusin(function () {
+//   $('#Modal').show();
+// });
 
-$('#close').click(function () {
-  $('#Modal').hide();
-});
+// $('#close').click(function () {
+//   $('#Modal').hide();
+// });

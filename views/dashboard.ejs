@@ -7,16 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href='stylesheets/dashboard.css' rel='stylesheet' />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"> 
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="javascripts/chart.js"></script>
+    <script type="text/javascript" src="javascripts/chart.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- 입력값이 없을 경우 alert -->
     <script>
         function required() {
             var empt = document.forms["search"]["influencer_id"].value;
             if (empt == "") {
-                alert("Please input influencer ID");
-                return false;
+              alert("Please input influencer ID");
+              return false;
             }
         }
     </script>
@@ -25,63 +27,6 @@
         <%= title %>
     </title>
 </head>
-
-<!-- <body>
-    <h1>
-        <a href="/">Social Scouter</a>
-    </h1>
-
-    <div class="search">
-        <form name="search" action="/dashboard" method="get" onsubmit="return required()">
-            <input type="text" name="influencer_id" placeholder="Influencer ID">
-            <input type="submit" value="search">
-        </form>
-        <br>
-    </div>
-
-    <div class="influencer summary">
-        <b>Influencer Summary</b>
-        <ul>
-            <li>
-                Insta ID : <%= data.influencer_id %>
-            </li>
-            <li>
-                Follwer : <%= data.follower %>
-            </li>
-            <li>
-                Quality Score : <%= qualityScore %>
-            </li>
-        </ul>
-        <br>
-    </div>
-
-    <div class="influencer info">        
-        <b>Information</b>
-        <ul>
-            <li>
-                Insta ID : <%= data.influencer_id %>
-            </li>
-            <li>
-                Insta Profile : <a href=<%= data.url %>><%= data.url %></a>
-            </li>
-            <li>
-                Post : <%= data.post %>
-            </li>
-            <li>
-                Follwer : <%= data.follower %>
-            </li>
-            <li>
-                Average like : <%= (data.like / data.post).toFixed(2) %>
-            </li>
-            <li>
-                Average comment : <%= (data.comment / data.post).toFixed(2) %>
-            </li>
-            <li>
-                React rate : <%= data.react_rate.toFixed(2) %>
-            </li>
-        </ul>
-    </div>
-</body> -->
 
 <body>
     <div class="main-content">
@@ -112,7 +57,7 @@
           <div class="row" style="width: 100%; justify-content: center;">
             <div class="col-lg-7 col-md-10">
               <h1 class="display-2 text-white"><%= data.influencer_id %></h1>
-              <p class="text-white mt-0 mb-5">프로필 설명/상태메세지</p>
+              <p class="text-white mt-0 mb-5"></p>
             </div>
           </div>
         </div>
@@ -128,7 +73,7 @@
                 <div class="col-lg-3 order-lg-2">
                   <div class="card-profile-image">
                     <a href="<%= data.url %>" target="_blank">
-                      <img src="images/10.png" class="rounded-circle">
+                      <img src="images/<%= data.id %>.jpg" class="rounded-circle">
                     </a>
                   </div>
                 </div>
@@ -144,27 +89,32 @@
               </div>
               <div class="card-body pt-0 pt-md-4">
                 <div class="row">
+                  <div class="col" style="text-align: center;">
+                    <% if(qualityScore <= 20){%>
+                      <img src="images/diamond.png" style="width : 215px"/><br>
+                      <h2>Diamond</h2>
+                    <%}else if(qualityScore > 20 && qualityScore <= 40){%>
+                      <img src="images/gold.png" style="width : 215px"/><br>
+                      <h2>Gold</h2>
+                    <%}else if(qualityScore > 40 && qualityScore <= 60){%>
+                      <img src="images/silver.png" style="width : 215px"/><br>
+                      <h2>Silver</h2>
+                    <%}else if(qualityScore > 60 && qualityScore <= 80){%>
+                      <img src="images/bronze.png" style="width : 215px"/><br>
+                      <h2>Bronze</h2>
+                    <%}else{%>
+                      <img src="images/iron.png" style="width : 215px"/><br>
+                      <h2>Iron</h2>
+                    <%}%>
+                  </div>
+                </div>
+                <div class="row">
                   <div class="col">
                     <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                      <div class="stat-card">
+                      <div class="stat-card" title="상위 몇 % 인지 나타냅니다.">
                         <div class="stat-card__content">
-                          <p class="text-uppercase mb-1 text-muted">팔로워</p>
-                          <h2><%= data.follower %>명</h2>
-                          <div>
-                            <span class="text-success font-weight-bold mr-1"></span> 
-                            <span class="text-muted"></span>
-                          </div>
-                        </div>
-                        <div class="stat-card__icon stat-card__icon--success">
-                          <div class="stat-card__icon-circle">
-                            <i class="fas fa-users"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="stat-card">
-                        <div class="stat-card__content">
-                          <p class="text-uppercase mb-1 text-muted">종합점수</p>
-                          <h2><%= qualityScore %>점</h2>
+                          <p class="text-uppercase mb-1 text-muted">상위 백분율</p>
+                          <h2><%= qualityScore %>%</h2>
                           <div>
                             <span class="text-success font-weight-bold mr-1"></span> 
                             <span class="text-muted"></span>
@@ -176,14 +126,6 @@
                           </div>
                         </div>
                       </div>
-                      <!-- <div>
-                        <span class="heading"><%= data.follower %>명</span>
-                        <span class="description">팔로워</span>
-                      </div>
-                      <div>
-                        <span class="heading"><%= qualityScore %>점</span>
-                        <span class="description">종합점수</span>
-                      </div> -->
                     </div>
                   </div>
                 </div>                
@@ -195,7 +137,7 @@
           <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
             <div class="card card-profile shadow" style="height: 580px;">
               <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between" style="font-size: 20px; font-weight: bold;">
                   상세정보
                 </div>
               </div>
@@ -203,9 +145,24 @@
                 <div class="row">
                   <div class="col">
                     <div class="card-profile-stats d-flex justify-content-center mt-md-5" style="margin-top: -3rem !important;">
-                      <div class="stat-card">
+                      <div class="stat-card" title="전체 팔로워 수 입니다.">
                         <div class="stat-card__content">
-                          <p class="text-uppercase mb-1 text-muted">포스트</p>
+                          <p class="mb-1 text-muted">팔로워</p>
+                          <h2><%= data.follower %>명</h2>
+                          <div>
+                            <span class="text-success font-weight-bold mr-1"></span> 
+                            <span class="text-muted"></span>
+                          </div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--success">
+                          <div class="stat-card__icon-circle">
+                            <i class="fas fa-portrait"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="stat-card" title="최근 45일간 포스트 수 입니다.">
+                        <div class="stat-card__content">
+                          <p class="mb-1 text-muted">포스트</p>
                           <h2><%= data.post %>개</h2>
                           <div>
                             <span class="text-success font-weight-bold mr-1"></span> 
@@ -218,10 +175,12 @@
                           </div>
                         </div>
                       </div>
-                      <div class="stat-card">
+                    </div>
+                    <div class="card-profile-stats d-flex justify-content-center mt-md-5" style="margin-top: -3rem !important;">
+                      <div class="stat-card" title="최근 45일간 평균 좋아요 수 입니다.">
                         <div class="stat-card__content">
-                          <p class="text-uppercase mb-1 text-muted">평균 좋아요</p>
-                          <h2><%= (data.like / data.post).toFixed(2) %>개</h2>
+                          <p class="mb-1 text-muted">평균 좋아요</p>
+                          <h2><%= Math.ceil((data.like / data.post).toFixed(2)) %>개</h2>
                           <div>
                             <span class="text-success font-weight-bold mr-1"></span> 
                             <span class="text-muted"></span>
@@ -233,12 +192,10 @@
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="card-profile-stats d-flex justify-content-center mt-md-5" style="margin-top: -3rem !important;">
-                      <div class="stat-card">
+                      <div class="stat-card" title="최근 45일간 평균 댓글 수 입니다.">
                         <div class="stat-card__content">
-                          <p class="text-uppercase mb-1 text-muted">평균 댓글</p>
-                          <h2><%= (data.comment / data.post).toFixed(2) %>개</h2>
+                          <p class="mb-1 text-muted">평균 댓글</p>
+                          <h2><%= Math.ceil((data.comment / data.post).toFixed(2)) %>개</h2>
                           <div>
                             <span class="text-success font-weight-bold mr-1"></span> 
                             <span class="text-muted"></span>
@@ -250,10 +207,12 @@
                           </div>
                         </div>
                       </div>
-                      <div class="stat-card">
+                    </div>
+                    <div class="card-profile-stats d-flex justify-content-center mt-md-5" style="margin-top: -3rem !important;">
+                      <div class="stat-card" title="(최근 45일간 좋아요 수 + 최근 45일간 댓글 수) / 팔로워 수 X 100 입니다.">
                         <div class="stat-card__content">
-                          <p class="text-uppercase mb-1 text-muted">반응률</p>
-                          <h2><%= data.react_rate.toFixed(2) %></h2>
+                          <p class="mb-1 text-muted">반응률</p>
+                          <h2><%= Math.ceil(data.react_rate.toFixed(2) * 100) %></h2>
                           <div>
                             <span class="text-success font-weight-bold mr-1"></span> 
                             <span class="text-muted"></span>
@@ -265,22 +224,54 @@
                           </div>
                         </div>
                       </div>
-                      <!-- <div>
-                        <span class="heading"><%= data.post %></span>
-                        <span class="description">포스트</span>
+                      <div class="stat-card" title="사람들이 모방소비를 하고 싶어 하는 정도를 나타냅니다.">
+                        <div class="stat-card__content">
+                          <p class="mb-1 text-muted">Desire to mimic</p>
+                          <h2><%= data.desire_to_mimic.toFixed(2) %></h2>
+                          <div>
+                            <span class="text-success font-weight-bold mr-1"></span> 
+                            <span class="text-muted"></span>
+                          </div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--success">
+                          <div class="stat-card__icon-circle">
+                            <i class="fas fa-grin-hearts"></i>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <span class="heading"><%= (data.like / data.post).toFixed(2) %></span>
-                        <span class="description">평균 좋아요 수</span>
+                      
+                    </div>
+                    <div class="card-profile-stats d-flex justify-content-center mt-md-5" style="margin-top: -3rem !important;">
+                      <div class="stat-card"  title="소셜 미디어 상에서 입소문의 정도를 나타냅니다.">
+                        <div class="stat-card__content">
+                          <p class="mb-1 text-muted">sWOM</p>
+                          <h2><%= data.sWOM.toFixed(2) %></h2>
+                          <div>
+                            <span class="text-success font-weight-bold mr-1"></span> 
+                            <span class="text-muted"></span>
+                          </div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--success">
+                          <div class="stat-card__icon-circle">
+                            <i class="fas fa-people-arrows"></i>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <span class="heading"><%= (data.comment / data.post).toFixed(2) %></span>
-                        <span class="description">평균 댓글 수</span>
-                      </div>
-                      <div>
-                        <span class="heading"><%= data.react_rate.toFixed(2) %></span>
-                        <span class="description">반응률</span>
-                      </div> -->
+                      <div class="stat-card" title="광고를 진행했을 때 사람들이 구매를 할 의향이 있는가를 나타냅니다.">
+                        <div class="stat-card__content">
+                          <p class="mb-1 text-muted">Purchase intention</p>
+                          <h2><%= data.purchase_intention.toFixed(2) %></h2>
+                          <div>
+                            <span class="text-success font-weight-bold mr-1"></span> 
+                            <span class="text-muted"></span>
+                          </div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--success">
+                          <div class="stat-card__icon-circle">
+                            <i class="fas fa-money-bill-alt"></i>
+                          </div>
+                        </div>
+                      </div>             
                     </div>
                   </div>
                 </div>
@@ -290,10 +281,36 @@
               </div>
             </div>
           </div>
+
+          <!-- 분석 -->
+          <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+            <div class="card card-profile shadow" style="height: 580px;">
+              <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                <div class="d-flex justify-content-between" style="font-size: 20px; font-weight: bold;">
+                  분석정보
+                </div>
+              </div>
+              <div class="card-body pt-0 pt-md-4">
+                <!-- <div class="row">
+                  <div class="col">
+                    <div class="card-profile-stats d-flex justify-content-center mt-md-5" style="margin-top: -3rem !important;">
+                      
+                    </div>
+                    <div class="card-profile-stats d-flex justify-content-center mt-md-5" style="margin-top: -3rem !important;">
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  
+                </div> -->
+                <div id='myChart'></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 </body>
-  
 
 </html>

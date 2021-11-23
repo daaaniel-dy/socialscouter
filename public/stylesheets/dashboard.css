@@ -1555,7 +1555,7 @@ a.text-white:focus {
 .card-profile-stats>div {
   margin-right: 1rem;
   padding: .875rem;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .card-profile-stats>div:last-child {
@@ -2036,7 +2036,7 @@ p {
 .stat-card {
 	background: #fff;
 	padding: 25px;
-	margin-bottom: 25px;
+	margin-bottom: 33px;
 	border-radius: 5px;
 	overflow: hidden;
 	display: flex;
@@ -2086,4 +2086,13 @@ p {
 }
 .stat-card__icon.stat-card__icon--primary .stat-card__icon-circle i {
 	color: #007bff;
+}
+
+html,body,#myChart {
+  height: 100%;
+  width: 100%;
+}
+
+#myChart-license-text {
+  display: none;
 }

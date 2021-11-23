@@ -4,10 +4,12 @@ var url = require('url');
 var util = require('util');
 const maria = require('../database/maria')
 
+let instadata = new Object();
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   // react_rate 내림차순으로 정렬 query
-  var sql = `SELECT influencer_id, url, image_src FROM influencer_data ORDER BY react_rate DESC`;
+  var sql = `SELECT influencer_id, url, image_src, id FROM influencer_data ORDER BY desire_to_mimic DESC`;
 
   maria.query(sql, function (err, results, fields) { // DB에 query 전송
     console.log("influencer id / url : " + util.inspect(results));
@@ -54,7 +56,7 @@ router.get('/dashboard', function (req, res, next) {
       var cnt_sql = `SELECT COUNT(*) AS cnt FROM influencer_data;`; // 전체 인플루언서 수 query
       var rank_sql =
         `SELECT rank
-        FROM(SELECT *, RANK() OVER (ORDER BY react_rate ASC) AS rank FROM influencer_data) AS t 
+        FROM(SELECT *, RANK() OVER (ORDER BY desire_to_mimic DESC) AS rank FROM influencer_data) AS t 
         WHERE t.influencer_id = ?;`; // react_rate의 내림차순 rank query
       var avg_sql = `SELECT avg(follower), avg(react_rate) FROM influencer_data;`; // average data query
 
@@ -70,11 +72,16 @@ router.get('/dashboard', function (req, res, next) {
         var qualityScore = (Number(influencerRank[0].rank) / Number(influencerCnt[0].cnt)) * 100;
         console.log("quality Score : " + qualityScore.toFixed(2));
 
+        instadata.title = 'Dashboard - ' + id
+        instadata.data = influencerData[0]
+        instadata.qualityScore = qualityScore.toFixed(2)
+
         res.render('dashboard', {
           title: 'Dashboard - ' + id, // Dashboard - (influencer id)
           data: influencerData[0], // influencer data
           qualityScore: qualityScore.toFixed(2) // quality score
         });
+        
       });
     }
     else { // error
@@ -83,6 +90,10 @@ router.get('/dashboard', function (req, res, next) {
     }
   });
 });
+
+router.post('/insta', async function(req, res){
+  res.send({'data': instadata});
+})
 
 // 잘못된 ID 입력으로 인해 return된 데이터가 없을 경우
 router.get('/nodata', function(req, res, next){
